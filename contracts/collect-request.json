@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schemaVersion", "subject", "scope", "credentialsRef", "capabilities"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "subject": {"type": "object", "required": ["id"]},
+    "scope": {"type": "object", "required": ["environment", "targetRevision"]},
+    "credentialsRef": {"type": "null"},
+    "capabilities": {"const": ["demo.fixture/v1"]}
+  }
+}

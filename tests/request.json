@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "subject": {
+    "schemaVersion": 1,
+    "id": "fixture-subject",
+    "type": "service",
+    "scope": {"productId": "fixture-product", "environment": "test", "targetRevision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+    "provenance": {"sourceRef": "fixture:subject"},
+    "observedAt": "2026-01-01T00:00:00Z"
+  },
+  "scope": {"productId": "fixture-product", "environment": "test", "targetRevision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+  "credentialsRef": null,
+  "capabilities": ["demo.fixture/v1"]
+}

@@ -1,0 +1,27 @@
+name: Provider contract
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: provider
+      - uses: actions/checkout@v4
+        with:
+          repository: arturmiller/specbound
+          ref: 82133410209f97cfaa951ed95f88e484a7d9163b
+          path: specbound
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r specbound/services/worker/requirements.txt
+      - run: docker pull python:3.12-slim@sha256:4840d514c583a4d3d8cad3940e68dee6f0f6f3635c12fcd0a3d74c21a5b93a54
+      - name: Validate the committed Git pack and run the collector
+        working-directory: provider
+        env:
+          SPECBOUND_ROOT: ${{ github.workspace }}/specbound
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
