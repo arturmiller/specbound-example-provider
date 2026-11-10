@@ -8,7 +8,7 @@ collector = (root / "collector.py").read_text(encoding="utf-8")
 manifest = {
     "apiVersion": "specbound.example/v1alpha1",
     "kind": "EvidenceProviderPack",
-    "metadata": {"id": "org.specbound.example-provider", "version": "1.0.0", "title": "Synthetic fixture provider", "description": "Synthetic examples only; not infrastructure evidence."},
+    "metadata": {"id": "org.specbound.example-provider", "version": "1.1.0", "title": "Synthetic fixture provider", "description": "Synthetic examples only; not infrastructure evidence."},
     "runtime": {
         "kind": "approved-container",
         "image": "python:3.12-slim@sha256:4840d514c583a4d3d8cad3940e68dee6f0f6f3635c12fcd0a3d74c21a5b93a54",

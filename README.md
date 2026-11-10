@@ -16,3 +16,16 @@ python -m unittest discover -s tests -p 'test_*.py' -v
 The integration test clones this Git repository into a temporary directory, loads the exact committed pack via Specbound's validator, and runs the collector through the real restricted Docker runner. It asserts the observation's scope, subject, capability, synthetic value and provenance. It requires the pinned image to already be present; no image is automatically approved or pulled by the runner. To verify a published repository/tag, set `PROVIDER_REPO_URL` and `PROVIDER_REF` to the Git URL and tag or commit before running the tests.
 
 Manifest validation and this fixture are not an image approval, a production collector, a cloud integration, or a guarantee that a deployed system is compliant.
+
+## Terraform read-only example
+
+`collector/main.tf` demonstrates a `data` source and `output` reading a **synthetic local Terraform state fixture**. It has no managed resources, external provider, cloud account, or deployment. The second fixture demonstrates that the output comes from the selected state file. Run from `collector/` with Terraform 1.10.5:
+
+```sh
+terraform fmt -check -recursive
+terraform init -backend=false -input=false
+terraform validate
+terraform test
+```
+
+The state file is an example only: it may be stale and does not establish the current state of real infrastructure. Reading outputs from a state snapshot still requires access to the entire snapshot, which may contain secrets; do not expose or use real state with this example. The current Specbound runner has neither mounts nor network access, so this HCL example is **not** wired into the runnable synthetic provider. A production integration would need an explicitly designed, reviewed read-only input and authorization boundary.

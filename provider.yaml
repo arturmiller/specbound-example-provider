@@ -3,7 +3,7 @@
   "kind": "EvidenceProviderPack",
   "metadata": {
     "id": "org.specbound.example-provider",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "title": "Synthetic fixture provider",
     "description": "Synthetic examples only; not infrastructure evidence."
   },
